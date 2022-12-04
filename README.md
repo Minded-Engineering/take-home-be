@@ -4,7 +4,7 @@
 
 This is a small take home assignment that aims to have the candidate become familiar with our stack (TypeScript, NestJS, Fastify, Prisma, etc) while assessing their coding skills and standard practices at the same time. 
 
-The main goal of this test is to see the compatibility of both parties regarding technical skills and technological stack.
+The main goal of this test is to see the compatibility of both parties regarding technical skills and development stack.
 
 You will need to fork this respository, work on your own codebase and share the link to your fork once the assignment is completed.
 
