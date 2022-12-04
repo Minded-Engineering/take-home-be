@@ -6,7 +6,7 @@ This is a small take home assignment that aims to have the candidate become fami
 
 The main goal of this test is to see the compatibility of both parties regarding technical skills and development stack.
 
-You will need to fork this respository, work on your own codebase and share the link to your fork once the assignment is completed.
+You will need to fork this repository, work on your own codebase and share the link to your fork once the assignment is completed.
 
 ## Description
 Create a RESTful API that returns a list of Star Wars planets and their information from a local SQLite DB.
@@ -17,11 +17,12 @@ The [Prisma ORM](https://www.prisma.io/) comes bundled already as one of the dep
 
 - Feel free to modify the existing code base as much as you want.
 - Use as many best practices as you feel are useful to make the code more readable, maintainable and scalable.
+- We love code comments, the `async/await` approach and well placed `logs` for visibility.
 
 ## Goals
 
 - The main goal is to create an API server that will expose 3 different endpoints:
-  1. A list planets endpoint.
+  1. A list all planets endpoint.
   2. A fetch planet (`id`) endpoint.
   3. A delete planet (`id`) endpoint.
 
@@ -34,7 +35,7 @@ The [Prisma ORM](https://www.prisma.io/) comes bundled already as one of the dep
 ### Building the fetch and delete endpoints:
   1. Both of these endpoints will take an `id` path parameter `/url/{id}` and will execute the expected action in the local DB.
   2. In case an invalid `id` is provided, a `404` message must be returned as response.
-  3. Both of these endpoints should have authentication (nothing _'too fancy'_, any Bearer token - such as a constant - that can be validated is more than enough).
+  3. Both of these endpoints should have authentication. Nothing _too elaborate_ any Bearer token (such as a constant) that can be validated is enough.
 
 ### Bonus
 - Create unit tests for the code developed.
@@ -43,15 +44,14 @@ The [Prisma ORM](https://www.prisma.io/) comes bundled already as one of the dep
 
 This app was built using the [Nest](https://github.com/nestjs/nest) framework TypeScript repository.
 
-You can use Docker, but we suggest for the sake of speed, to setup a local env with Node and SQLite instead
+You can use Docker, but we suggest for the sake of speed, to set up a local env with Node and SQLite instead
 
 ### Dependencies
 
-- NestJS
-- Prisma
-- Typescript 4.3.5
-- Swagger (OpenAPI)
-- SQLite (as main storage)
+- [NestJS](https://nestjs.com/)
+- [Prisma](https://www.prisma.io/)
+- [Swagger](https://swagger.io/) (OpenAPI)
+- [SQLite](https://www.sqlite.org/index.html)
 
 ### Commands
 
