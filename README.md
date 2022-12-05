@@ -8,6 +8,8 @@ The main goal of this test is to see the compatibility of both parties regarding
 
 You will need to fork this repository, work on your own codebase and share the link to your fork once the assignment is completed.
 
+NestJS is being used as backend framework, the webserver is being started in the [main.ts](https://github.com/Minded-Engineering/take-home-be/blob/main/src/main.ts) file
+
 ## Description
 Create a RESTful API that returns a list of Star Wars planets and their information from a local SQLite DB.
 
