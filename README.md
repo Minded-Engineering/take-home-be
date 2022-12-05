@@ -37,7 +37,7 @@ The [Prisma ORM](https://www.prisma.io/) comes bundled already as one of the dep
 ### Building the fetch and delete endpoints:
   1. Both of these endpoints will take an `id` path parameter `/url/{id}` and will execute the expected action in the local DB.
   2. In case an invalid `id` is provided, a `404` message must be returned as response.
-  3. Both of these endpoints should have authentication. Nothing _too elaborate_ any Bearer token (such as a constant) that can be validated is enough.
+  3. Both of these endpoints should have authentication (We do not expect a login/logout mechanism), any Bearer token that can be used to _secure_ the endpoints from public access is enough, feel free to choose any strategy you see fit to accomplish the task.
 
 ### Bonus
 - Create unit tests for the code developed.
