@@ -13,7 +13,7 @@ import axios from 'axios';
 export class PlanetsService {
   constructor(private prismaService: PrismaService) {}
 
-  private SWAP_BASE = process.env.SWAP_BASE ?? `https://swapi.dev/api`;
+  private SWAPI_BASE = process.env.SWAP_BASE ?? `https://swapi.dev/api`;
 
   public async getPlanets(
     query: PlanetSearchQueryDto,
@@ -49,7 +49,7 @@ export class PlanetsService {
 
   public async scrapNewPlanets(query: PlanetSearchQueryDto): Promise<void> {
     const swApiResponse = await axios
-      .get(`${this.SWAP_BASE}/planets/?search=${query.name}`)
+      .get(`${this.SWAPI_BASE}/planets/?search=${query.name}`)
       .then((response) => response.data as SwApiResponseDto);
 
     /*
