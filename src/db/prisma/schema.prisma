@@ -13,7 +13,7 @@ datasource db {
 model Planet {
   id        Int     @id @default(autoincrement())
   name      String
-  diameter  Int
+  diameter  Int?
   gravity   String
   terrain   String
   createdAt   DateTime @default(now())

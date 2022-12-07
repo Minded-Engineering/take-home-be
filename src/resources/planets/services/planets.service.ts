@@ -48,47 +48,59 @@ export class PlanetsService {
   }
 
   public async scrapNewPlanets(query: PlanetSearchQueryDto): Promise<void> {
-    const swApiResponse = await axios
-      .get(`${this.SWAPI_BASE}/planets/?search=${query.name}`)
-      .then((response) => response.data as SwApiResponseDto);
+    // Due to the pagination mechanism, if we get more than 10 results,
+    // we need to make more requests, by doing this,
+    // we can make the requests for new values
+    // while concurrently saving the results we already have in the database
+    let queryURL = `${this.SWAPI_BASE}/planets/?search=${query.name}`;
+    let insertionsArray: Promise<any>[] = [];
 
-    /*
-    This is the code that I would like to use here,
-    but createMany is not working with SQLLite
-    https://github.com/prisma/prisma/issues/11507#issuecomment-1025587202
+    do {
+      const swApiResponse = await axios
+        .get(queryURL)
+        .then((response) => response.data as SwApiResponseDto);
 
-    const toInsertPlanets = swApiResponse.results.map(
-      (planet) =>
-        ({
-          name: planet.name,
-          diameter: planet.diameter,
-          gravity: planet.gravity,
-          terrain: planet.terrain,
-          createdAt: planet.created,
-          updatedAt: planet.edited,
-        } as unknown as Planet),
-    );
+      insertionsArray = [
+        ...insertionsArray,
+        ...this.checkAndSaveSwApiResponse(swApiResponse),
+      ];
+      queryURL = swApiResponse.next;
+    } while (queryURL !== null);
 
-    await this.prismaService.planet.createMany({
-      data: toInsertPlanets,
-    });
-     
-     */
+    await Promise.all(insertionsArray);
+  }
 
-    await Promise.all(
-      swApiResponse.results.map((planet) =>
-        this.prismaService.planet.create({
+  private checkAndSaveSwApiResponse(
+    swApiResponse: SwApiResponseDto,
+  ): Promise<any>[] {
+    //Here we check if the planet already exists in the database
+    // If it does not exist, we create it
+    // I don't use the createMany because it's not supported by the SQLite driver
+    // https://github.com/prisma/prisma/issues/11507#issuecomment-1025587202
+    return swApiResponse.results.map(async (planet) => {
+      const existingCount = await this.prismaService.planet.count({
+        where: {
+          name: {
+            contains: planet.name,
+          },
+        },
+      });
+
+      if (existingCount === 0) {
+        await this.prismaService.planet.create({
           data: {
             name: planet.name,
-            diameter: parseInt(planet.diameter),
+            ...(!isNaN(parseInt(planet.diameter)) && {
+              diameter: parseInt(planet.diameter),
+            }),
             gravity: planet.gravity,
             terrain: planet.terrain,
             createdAt: planet.created,
             updatedAt: planet.edited,
           } as unknown as Planet,
-        }),
-      ),
-    );
+        });
+      }
+    });
   }
 
   public async getPlanet(id: number): Promise<Planet | null> {

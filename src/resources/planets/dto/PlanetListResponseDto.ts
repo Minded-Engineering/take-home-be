@@ -16,7 +16,7 @@ export class PlanetResponseDto {
 
   public id: number;
   public name: string;
-  public diameter: number;
+  public diameter: number | null;
   public gravity: string;
   public terrain: string;
 }
