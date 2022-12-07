@@ -1,4 +1,4 @@
-import './config/tracer/otel-tracer';
+// import './config/tracer/otel-tracer';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';

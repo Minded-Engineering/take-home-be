@@ -45,7 +45,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
    */
   async filterSoftDeleteMiddleware() {
     this.$use(async (params: Prisma.MiddlewareParams, next) => {
-      const actions = ['findFirst', 'findMany'];
+      const actions = ['findFirst', 'findMany', 'count'];
 
       if (params.action === 'findUnique') {
         params.action = 'findFirst';
