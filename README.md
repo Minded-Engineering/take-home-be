@@ -1,3 +1,60 @@
+## 🧑🏻‍💻 Guille's notes
+
+For testing the authentication with the API, you can create a JWT secret using
+
+```bash
+openssl rand -base64 32
+```
+
+
+Or just add into the .env file the following key (used to sing the following curl examples)
+```
+JWT_SECRET=Y3rngVz+2+uH9x8/AE1ZLIrAL+FkqDfPALGKwn2v0HA=
+```
+
+### Authentication
+
+I used JWT tokens, in a minimal way, just to have an authentication method and an user id.
+
+Token example
+```json
+{
+  "id": 1,
+  "iat": 1670388622,
+  "exp": 1671511857
+}
+```
+
+now, we can use HS256, to generate the token. For the purpose of this demo, the token will be 
+
+```
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiaWF0IjoxNjcwMzg4NjIyLCJleHAiOjE2NzE1MTE4NTd9.YnuNJ7YoMT3JSd5eQyn5DI-H_9_t5Y9Zpkek605L2K4
+```
+for a sandbox you can check with https://jwt.io/
+
+---
+
+
+### LIST API
+Example showing pagination
+```bash
+curl --location --request GET 'localhost:3000/planets-api/search?name=t&limit=2&offset=5'
+```
+
+### GET by ID API
+```bash
+curl --location --request GET 'localhost:3000/planets-api/planet/1' \
+--header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiaWF0IjoxNjcwMzg4NjIyLCJleHAiOjE2NzE1MTE4NTd9.YnuNJ7YoMT3JSd5eQyn5DI-H_9_t5Y9Zpkek605L2K4'
+```
+
+### DELETE by ID API
+```bash
+curl --location --request DELETE 'localhost:3000/planets-api/planet/1' \
+--header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiaWF0IjoxNjcwMzg4NjIyLCJleHAiOjE2NzE1MTE4NTd9.YnuNJ7YoMT3JSd5eQyn5DI-H_9_t5Y9Zpkek605L2K4'
+```
+
+---
+
 # BE Take Home Project
 
 ## Overview 
