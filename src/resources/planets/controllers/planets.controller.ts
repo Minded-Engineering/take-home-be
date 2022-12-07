@@ -40,13 +40,10 @@ export class PlanetsController {
   @UseInterceptors(AuthInterceptor)
   async getPlanet(@Param() params: PlanetIdParamDto, @AuthUser() user: any) {
     this.logger.log(`User ${user.id} is requesting planet ${params.id}`);
-
     const planet = await this.PlanetsService.getPlanet(params.id);
-
     if (!planet) {
       throw new NotFoundException();
     }
-
     return new PlanetResponseDto(planet);
   }
 
