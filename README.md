@@ -6,7 +6,7 @@ This is a small take home assignment that aims to have the candidate become fami
 
 The main goal of this test is to see the compatibility of both parties regarding technical skills and development stack.
 
-You will need to fork this repository, work on your own codebase and share the link to your fork once the assignment is completed.
+You will need to clone or fork this repository, work on your own codebase and share the link to your fork once the assignment is completed.
 
 NestJS is being used as backend framework, the webserver is being started in the [main.ts](https://github.com/Minded-Engineering/take-home-be/blob/main/src/main.ts) file
 
