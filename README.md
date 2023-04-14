@@ -6,7 +6,7 @@ This is a small take home assignment that aims to have the candidate become fami
 
 The main goal of this test is to see the compatibility of both parties regarding technical skills and development stack.
 
-You will need to clone or fork this repository, work on your own codebase and share the link to your fork once the assignment is completed.
+You will need to clone this repository, work on your own codebase and share the link to your repository once the assignment is completed.
 
 NestJS is being used as backend framework, the webserver is being started in the [main.ts](https://github.com/Minded-Engineering/take-home-be/blob/main/src/main.ts) file
 
@@ -40,7 +40,7 @@ The [Prisma ORM](https://www.prisma.io/) comes bundled already as one of the dep
   3. Both of these endpoints should have authentication (We do not expect a login/logout mechanism), any Bearer token that can be used to _secure_ the endpoints from public access is enough, feel free to choose any strategy you see fit to accomplish the task.
 
 ### Bonus
-- Create unit tests for the code developed.
+- Create unit tests for the developed code.
 
 ## Running the app
 
